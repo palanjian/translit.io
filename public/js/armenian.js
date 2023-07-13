@@ -57,8 +57,8 @@ function transliterate(){
         //vo case
         else if(i == 0 && text[i] === "Ո") translation += 'Vo';
         else if(i == 0 && text[i] === "ո") translation += 'vo';
-        else if(i !=0 && i+1 < text.length && text[i] === "Ո" && text[i-1] === " ") translation += 'Vo';
-        else if(i !=0 && i+1 < text.length && text[i] === "ո" && text[i-1] === " ") translation += 'vo';
+        else if(i !=0 && i+1 < text.length && text[i] === "Ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'Vo';
+        else if(i !=0 && i+1 < text.length && text[i] === "ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'vo';
         
         else if(map.has(text[i])) translation += map.get(text[i])
         else translation += text[i]
@@ -68,11 +68,26 @@ function transliterate(){
 }
 
 function westernize(){ 
-    map.set("ֆ", "pec"), map.set("ֆ", "pec"),
-    map.set("ֆ", "pec"), map.set("ֆ", "pec"),
-    map.set("ֆ", "pec"), map.set("ֆ", "pec"),
-    map.set("ֆ", "pec"), map.set("ֆ", "pec")
+    map.set("պ", "b"), map.set("Պ", "B"),
+    map.set("բ", "p"), map.set("Բ", "P"),
+    map.set("կ", "g"), map.set("Կ", "G"),
+    map.set("գ", "k"), map.set("Գ", "K"),
+    map.set("տ", "d"), map.set("Տ", "D"),
+    map.set("դ", "t"), map.set("Դ", "T"),
+    map.set("ձ", "ts"), map.set("Ձ", "TS"),
+    map.set("ծ", "dz"), map.set("Ծ", "DZ"),
+    map.set("ճ", "j"), map.set("Ճ", "J"),
+    map.set("ջ", "ch"), map.set("Ջ", "CH")
 }
 function easternize(){
-    map.set("ֆ", "f")
+    map.set("պ", "p"), map.set("Պ", "P"),
+    map.set("բ", "b"), map.set("Բ", "B"),
+    map.set("կ", "k"), map.set("Կ", "K"),
+    map.set("գ", "g"), map.set("Գ", "G"),
+    map.set("տ", "t"), map.set("Տ", "T"),
+    map.set("դ", "d"), map.set("Դ", "D"),
+    map.set("ձ", "dz"), map.set("Ձ", "DZ"),
+    map.set("ծ", "ts"), map.set("Ծ", "TS"),
+    map.set("ճ", "ch"), map.set("Ճ", "CH"),
+    map.set("ջ", "j"), map.set("Ջ", "J")
 }
