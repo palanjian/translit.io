@@ -6,12 +6,14 @@
 </head>
 <body>
     <h1>Input text below</h1>
-    <form action="/translit" method="POST" id="translitForm">
-        <br><input type="text" placeholder="text" id="text">
-        <br><button type="submit" value="arm">armenian</button>
-        <br><button type="submit" value="ru">russian</button>
+    <form>
+        <script src="js/armenian.js"></script>
+
+        <textarea id="input" rows="20" onkeyup="transliterate()"></textarea>
+        <textarea id="output" rows="20" onkeyup=""></textarea>
+
+        <input type="radio" name = "dialect" checked="checked" onclick="easternize(), transliterate()">Eastern
+        <input type="radio" name = "dialect" onclick="westernize(), transliterate()">Western
     </form>
-    <h1>Transliteration: <%= final %></h1>
-    <script src="eventListener.js"></script>
 </body>
 </html>

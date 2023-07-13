@@ -39,15 +39,20 @@ const map = new Map([
     ["ֆ", "f"], ["Ֆ", "F"]
 ]);
 
-function transArm(text){
+
+function transliterate(){
     let translation = ""
+    let text = document.getElementById('input').value
+
     for(let i = 0; i < text.length; i++){
         //add special cases
 
         //ու case
         if(i+1 < text.length && text[i] === "ո" && text[i+1] === "ւ") translation += 'u'
         else if(i+1 < text.length && text[i] === "Ո" && text[i+1] === "Ւ") translation += 'U'
-        else if((i+1 < text.length) && ((text[i] === "Ո" && text[i+1] === "ւ") && (text[i] === "ո" && text[i+1] === "Ւ"))) translation += 'u';
+        else if((i+1 < text.length) && ((text[i] === "Ո" && text[i+1] === "ւ"))) translation += 'U';
+        else if((i+1 < text.length) && ((text[i] === "ո" && text[i+1] === "Ւ"))) translation += 'u';
+
 
         //vo case
         else if(i == 0 && text[i] === "Ո") translation += 'Vo';
@@ -58,7 +63,16 @@ function transArm(text){
         else if(map.has(text[i])) translation += map.get(text[i])
         else translation += text[i]
     }
+    document.getElementById("output").value = translation;
     return translation
 }
 
-module.exports = transArm;
+function westernize(){ 
+    map.set("ֆ", "pec"), map.set("ֆ", "pec"),
+    map.set("ֆ", "pec"), map.set("ֆ", "pec"),
+    map.set("ֆ", "pec"), map.set("ֆ", "pec"),
+    map.set("ֆ", "pec"), map.set("ֆ", "pec")
+}
+function easternize(){
+    map.set("ֆ", "f")
+}
