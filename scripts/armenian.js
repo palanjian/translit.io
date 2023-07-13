@@ -43,7 +43,20 @@ function transArm(text){
     let translation = ""
     for(let i = 0; i < text.length; i++){
         //add special cases
-        translation += map.get(text[i])
+
+        //ու case
+        if(i+1 < text.length && text[i] === "ո" && text[i+1] === "ւ") translation += 'u'
+        else if(i+1 < text.length && text[i] === "Ո" && text[i+1] === "Ւ") translation += 'U'
+        else if((i+1 < text.length) && ((text[i] === "Ո" && text[i+1] === "ւ") && (text[i] === "ո" && text[i+1] === "Ւ"))) translation += 'u';
+
+        //vo case
+        else if(i == 0 && text[i] === "Ո") translation += 'Vo';
+        else if(i == 0 && text[i] === "ո") translation += 'vo';
+        else if(i !=0 && i+1 < text.length && text[i] === "Ո" && text[i-1] === " ") translation += 'Vo';
+        else if(i !=0 && i+1 < text.length && text[i] === "ո" && text[i-1] === " ") translation += 'vo';
+        
+        else if(map.has(text[i])) translation += map.get(text[i])
+        else translation += text[i]
     }
     return translation
 }
