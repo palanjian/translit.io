@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>translit.io 🌐</title>
+</head>
+<body>
+    <h1>Input text below</h1>
+    <form action="/translit" method="POST" id="translitForm">
+        <br><input type="text" placeholder="text" id="text">
+        <br><button type="submit" value="arm">armenian</button>
+        <br><button type="submit" value="ru">russian</button>
+    </form>
+    <h1>Transliteration: <%= final %></h1>
+    <script src="eventListener.js"></script>
+</body>
+</html>
