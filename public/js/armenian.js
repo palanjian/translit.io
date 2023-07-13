@@ -3,27 +3,27 @@ const map = new Map([
     ["բ", "b"], ["Բ", "B"],
     ["գ", "g"], ["Գ", "G"],
     ["դ", "d"], ["Դ", "D"],
-    ["ե", "e"], ["Ե", "E"], //fix
+    ["ե", "e"], ["Ե", "E"], 
     ["զ", "z"], ["Զ", "Z"],
     ["է", "e"], ["Է", "E"],
     ["ը", "y"], ["Ը", "Y"],
     ["թ", "t"], ["Թ", "T"],
-    ["ժ", "j"], ["Ժ", "J"], //fix
+    ["ժ", "j"], ["Ժ", "J"], 
     ["ի", "i"], ["Ի", "I"],
     ["լ", "l"], ["Լ", "L"],
     ["խ", "x"], ["Խ", "X"],
-    ["ծ", "ts"], ["Ծ", "TS"],
+    ["ծ", "ts"], ["Ծ", "Ts"],
     ["կ", "k"], ["Կ", "K"],
     ["հ", "h"], ["Հ", "H"],
-    ["ձ", "dz"], ["Ձ", "DZ"],
-    ["ղ", "x"], ["Ղ", "X"], //fix
-    ["ճ", "ch"], ["Ճ", "CH"],
+    ["ձ", "dz"], ["Ձ", "Dz"],
+    ["ղ", "x"], ["Ղ", "X"],
+    ["ճ", "ch"], ["Ճ", "Ch"],
     ["մ", "m"], ["Մ", "M"],
     ["յ", "y"], ["Յ", "Y"],
     ["ն", "n"], ["Ն", "N"],
-    ["շ", "sh"], ["Շ", "SH"],
-    ["ո", "o"], ["Ո", "O"], //fix NOW
-    ["չ", "ch"], ["Չ", "CH"],
+    ["շ", "sh"], ["Շ", "Sh"],
+    ["ո", "o"], ["Ո", "O"], 
+    ["չ", "ch"], ["Չ", "Ch"],
     ["պ", "p"], ["Պ", "P"],
     ["ջ", "j"], ["Ջ", "J"],
     ["ռ", "r"], ["Ռ", "R"],
@@ -32,11 +32,13 @@ const map = new Map([
     ["տ", "t"], ["Տ", "T"],
     ["ր", "r"], ["Ր", "R"],
     ["ց", "c"], ["Ց", "C"],
-    ["ւ", ""], ["Ւ", ""], //fix NOW
+    ["ւ", "v"], ["Ւ", "V"],
     ["փ", "p"], ["Փ", "P"],
     ["ք", "q"], ["Ք", "Q"],
     ["օ", "o"], ["Օ", "O"],
-    ["ֆ", "f"], ["Ֆ", "F"]
+    ["ֆ", "f"], ["Ֆ", "F"],
+    ["և", "ev"]
+
 ]);
 
 
@@ -48,17 +50,17 @@ function transliterate(){
         //add special cases
 
         //ու case
-        if(i+1 < text.length && text[i] === "ո" && text[i+1] === "ւ") translation += 'u'
-        else if(i+1 < text.length && text[i] === "Ո" && text[i+1] === "Ւ") translation += 'U'
-        else if((i+1 < text.length) && ((text[i] === "Ո" && text[i+1] === "ւ"))) translation += 'U';
-        else if((i+1 < text.length) && ((text[i] === "ո" && text[i+1] === "Ւ"))) translation += 'u';
+        if(i+1 < text.length && text[i] === "ո" && text[i+1] === "ւ") { translation += 'u'; ++i }
+        else if(i+1 < text.length && text[i] === "Ո" && text[i+1] === "Ւ") { translation += 'U'; ++i }
+        else if((i+1 < text.length) && ((text[i] === "Ո" && text[i+1] === "ւ"))) { translation += 'U'; ++i }
+        else if((i+1 < text.length) && ((text[i] === "ո" && text[i+1] === "Ւ"))) { translation += 'u'; ++i }
 
 
         //vo case
         else if(i == 0 && text[i] === "Ո") translation += 'Vo';
         else if(i == 0 && text[i] === "ո") translation += 'vo';
         else if(i !=0 && i+1 < text.length && text[i] === "Ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'Vo';
-        else if(i !=0 && i+1 < text.length && text[i] === "ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'vo';
+        else if(i !=0 && i+1 < text.length && text[i] ===  "ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'vo';
         
         else if(map.has(text[i])) translation += map.get(text[i])
         else translation += text[i]
@@ -74,10 +76,10 @@ function westernize(){
     map.set("գ", "k"), map.set("Գ", "K"),
     map.set("տ", "d"), map.set("Տ", "D"),
     map.set("դ", "t"), map.set("Դ", "T"),
-    map.set("ձ", "ts"), map.set("Ձ", "TS"),
-    map.set("ծ", "dz"), map.set("Ծ", "DZ"),
+    map.set("ձ", "ts"), map.set("Ձ", "Ts"),
+    map.set("ծ", "dz"), map.set("Ծ", "Dz"),
     map.set("ճ", "j"), map.set("Ճ", "J"),
-    map.set("ջ", "ch"), map.set("Ջ", "CH")
+    map.set("ջ", "ch"), map.set("Ջ", "Ch")
 }
 function easternize(){
     map.set("պ", "p"), map.set("Պ", "P"),
@@ -86,8 +88,27 @@ function easternize(){
     map.set("գ", "g"), map.set("Գ", "G"),
     map.set("տ", "t"), map.set("Տ", "T"),
     map.set("դ", "d"), map.set("Դ", "D"),
-    map.set("ձ", "dz"), map.set("Ձ", "DZ"),
-    map.set("ծ", "ts"), map.set("Ծ", "TS"),
-    map.set("ճ", "ch"), map.set("Ճ", "CH"),
+    map.set("ձ", "dz"), map.set("Ձ", "Dz"),
+    map.set("ծ", "ts"), map.set("Ծ", "Ts"),
+    map.set("ճ", "ch"), map.set("Ճ", "Ch"),
     map.set("ջ", "j"), map.set("Ջ", "J")
 }
+
+/*
+DISCREPENCIES 
+
+
+Ե could be eh or yeh
+Ը could be y or @ 
+Ժ could be j or zh
+Խ could be x or kh
+Ծ could be c or ts
+Ղ could be x or gh     
+Ց could be c or ts 
+
+Եւ 
+Եվ  
+և 
+
+//westerners dont use x, they ALWAYS use kh or gh
+*/
