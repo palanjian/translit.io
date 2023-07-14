@@ -8,21 +8,23 @@
 <body>
     <div class="translator-container">
         <div class="languages">
-            <h1>Armenian</h1>
-            <h1>-></h1>
+            <h1>Հայերեն</h1>
             <h1>English</h1>
         </div>
         <div class="box-container">
             <div class="box-wrapper">
-                <textarea id="input" rows="20" onkeyup="transliterate()"></textarea>
+                <textarea id="input" onkeyup="transliterate()" style="background-color: rgba(0, 0, 0, 0.3);" autofocus></textarea>
             </div>
             <div class="box-wrapper">
-                <textarea id="output" rows="20" onkeyup=""></textarea>
+                <textarea id="output" onkeyup="" style="background-color: rgba(0, 0, 0, 0.5);" readonly></textarea>
             </div>
         </div>
     </div>
-    <div class="hero-img"><img src ="img/arm.png"></div>
+    <!-- <div class="bottom">Product of @palanjian on GitHub!</div> -->
+    <div class="hero-img"><img src ="img/arm.png" id="hero-img"></div>
     <script src="js/armenian.js"></script>
+    <script src="js/index.js"></script>
+
     <!-- <form>
         <input type="radio" name = "dialect" checked="checked" onclick="easternize(), transliterate()">Eastern
         <input type="radio" name = "dialect" onclick="westernize(), transliterate()">Western

@@ -1,63 +1,101 @@
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    outline: 0;
-    -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.translator-container{
-    position: absolute;
-    width: 60%;
-    border-radius: 2rem;
-    border: solid;
-    border-color: white;
-    overflow: hidden;
-    background-color: grey;
-    opacity: 0.2;
-    z-index: 1;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0 auto;
+.translator-container {
+  position: absolute;
+  width: 60%;
+  border-radius: 2rem;
+  border: solid;
+  border-color: rgba(0, 0, 0, 0.5);
+  border-width: 5px;
+  overflow: hidden;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.translator-container textarea{
-    resize: none;
-    width: 100%;
-    height: 100%;
-    background-color: grey;
+.translator-container textarea {
+  resize: none;
+  width: 100%;
+  height: 100%;
+
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+
 }
 
-.languages{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.languages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-top: 1%;
+}
+
+.languages h1{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    color:rgba(255, 255, 255, 0.8);
+    font-size: 45px;
+
+}
+.box-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 50vh;
+  max-height: 70vh;
+
+}
+
+.box-wrapper {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.hero-img {
+  position: fixed; /* Change to 'fixed' instead of 'absolute' */
+  z-index: -1; /* Move the image to the background */
+  bottom: 10vh;
+  left: 60vh;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover the entire viewport */
+  pointer-events: none; /* Allow mouse events to pass through the image */
+}
+
+.bottom{
+    position: fixed;
+    left: 50%;
+    bottom: 6%;
+    color: white;
     align-items: center;
-    width: 100%;
+    transform: translate(-50%, -50%);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    color:rgba(255, 255, 255, 0.8);
+    font-size: 30px;
 }
-.box-container{
-    display: flex;
-    flex-direction: row;
-    min-height:50vh;
-    max-height:70vh;
-}
-.box-wrapper{
-    position: relative;
-    display: flex;
-    box-sizing: border-box;
-    width: 50%;
+html,
+body {
+  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-.hero-img{
-    z-index: 0;
-}
-body{
-    height: 100%;
-    width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
-    overflow: hidden;
+body {
+  background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
+  overflow: hidden;
 }
