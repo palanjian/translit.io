@@ -84,9 +84,10 @@
     transform: translate(-50%, -50%);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: normal;
-    color:rgba(255, 255, 255, 0.8);
+    color:rgba(255, 255, 255, 0.3);
     font-size: 30px;
 }
+
 html,
 body {
   height: 100vh;
@@ -98,4 +99,8 @@ body {
 body {
   background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
   overflow: hidden;
+}
+
+a{
+  color: brown;
 }
