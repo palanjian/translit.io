@@ -8,7 +8,7 @@
 }
 
 .translator-container {
-  position: absolute;
+  position: relative;
   width: 60%;
   border-radius: 2rem;
   border: solid;
@@ -29,7 +29,6 @@
   font-size: 30px;
   color: rgba(255, 255, 255, 0.8);
   padding: 20px;
-
 }
 
 .languages {
@@ -40,6 +39,7 @@
   width: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   padding-top: 1%;
+  flex-shrink: 0;
 }
 
 .languages h1{
@@ -54,7 +54,8 @@
   flex-direction: row;
   min-height: 50vh;
   max-height: 70vh;
-
+  flex-grow: 1;
+  overflow-y: hidden;
 }
 
 .box-wrapper {
@@ -65,27 +66,40 @@
 }
 
 .hero-img {
-  position: fixed; /* Change to 'fixed' instead of 'absolute' */
-  z-index: -1; /* Move the image to the background */
+  position: fixed; 
+  z-index: -1; 
   bottom: 10vh;
   left: 60vh;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Maintain aspect ratio and cover the entire viewport */
-  pointer-events: none; /* Allow mouse events to pass through the image */
+  object-fit: cover; 
+  pointer-events: none; 
 }
 
 .bottom{
-    position: fixed;
-    left: 50%;
-    bottom: 6%;
-    color: white;
-    align-items: center;
-    transform: translate(-50%, -50%);
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: normal;
-    color:rgba(255, 255, 255, 0.3);
-    font-size: 30px;
+  position: fixed;
+  left: 50%;
+  bottom: 6%;
+  color: white;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: normal;
+  color:rgba(255, 255, 255, 0.3);
+  font-size: 30px;
+}
+
+.settings-button{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 1%;
+  margin-right: 1%;
+  color: blue;
+}
+.settings-button button{
+  width: 100px;
+  z-index: 5;
 }
 
 html,
@@ -97,7 +111,9 @@ body {
 }
 
 body {
-  background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
+  background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%); 
+  /* background: linear-gradient(245.69deg, #f1f1f1 0%, #ffffff 28.53%, #e9e9e9 75.52%); */
+
   overflow: hidden;
 }
 
