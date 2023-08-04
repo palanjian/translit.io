@@ -43,12 +43,12 @@
 }
 
 .languages h1{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: normal;
-    color:rgba(255, 255, 255, 0.8);
-    font-size: 45px;
-
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: normal;
+  color:rgba(255, 255, 255, 0.8);
+  font-size: 45px;
 }
+
 .box-container {
   display: flex;
   flex-direction: row;
@@ -63,6 +63,59 @@
   display: flex;
   box-sizing: border-box;
   width: 50%;
+}
+
+.settings{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  
+}
+
+.settings-button{
+  /*
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  border-radius: 1rem;
+  width: 10%; */
+  display: inline-flex;
+  height: 50px;
+  padding: 0;
+  background: rgba(119, 27, 27, 0.8);
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-size: 30px;
+  cursor: pointer;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-right: 1%;
+}
+
+.settings-button:hover{
+  background: rgba(90, 19, 19, 0.8);
+}
+
+.settings-button:active{
+  background: rgba(70, 13, 13, 0.8);
+}
+
+.button-text, .button-icon{
+  display: inline-flex;
+  align-items: center;
+  padding: 0 24px;
+  color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+}
+
+.button-icon{
+  font-size: 1.5em;
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .hero-img {
@@ -89,19 +142,6 @@
   font-size: 30px;
 }
 
-.settings-button{
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-bottom: 1%;
-  margin-right: 1%;
-  color: blue;
-}
-.settings-button button{
-  width: 100px;
-  z-index: 5;
-}
-
 html,
 body {
   height: 100vh;
@@ -118,5 +158,5 @@ body {
 }
 
 a{
-  color: brown;
+  color: #a52a2a;
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/index.css" />
     <title>translit.io 🌐</title>
 </head>
@@ -19,10 +20,20 @@
                 <textarea id="output" onkeyup="" style="background-color: rgba(0, 0, 0, 0.5);" readonly></textarea>
             </div>
         </div>
+        <div class="settings">
+            <button type="button" class="settings-button">
+                <span class="button-text">Settings</span>
+                <span class="button-icon">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </span>
+            </button>
+        </div>
     </div>
     <div class="bottom">product of <a href="https://www.github.com/palanjian/" target="_blank">@palanjian</a> on GitHub!</div>
     <div class="hero-img"><img src ="img/arm.png" id="hero-img"></div>
 
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- <form>
         <input type="radio" name = "dialect" checked="checked" onclick="easternize(), transliterate()">Eastern
         <input type="radio" name = "dialect" onclick="westernize(), transliterate()">Western
