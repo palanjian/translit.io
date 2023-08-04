@@ -7,7 +7,7 @@
     <title>translit.io 🌐</title>
 </head>
 <body>
-    <div class="translator-container">
+    <div class="translator-container" id="translator-container">
         <div class="languages">
             <h1>Հայերեն</h1>
             <h1>English</h1>
@@ -27,7 +27,7 @@
                     <ion-icon name="copy-outline" id="copy-icon"></ion-icon>
                 </span>
             </button>
-            <button type="button" class="settings-button">
+            <button type="button" class="settings-button" onclick="openSettings()">
                 <span class="button-text">Settings</span>
                 <span class="button-icon">
                     <ion-icon name="settings-outline"></ion-icon>
@@ -36,6 +36,28 @@
         </div>
         
     </div>
+
+    <div class="translator-container settings-container" id="settings-container">
+        <div class="languages">
+            <h1>Settings</h1>
+        </div>
+        <div class="box-container">
+            <div class="box-wrapper radio-wrapper" id="radio-wrapper"></div>
+            <div class="box-wrapper radio-wrapper">
+            </div>
+        </div>
+        
+        <div class="settings">
+            <button type="button" class="settings-button" onclick="openTranslate()">
+                <span class="button-text">Translate</span>
+                <span class="button-icon">
+                    <ion-icon name="language-outline"></ion-icon>
+                </span>
+            </button>
+        </div>
+        
+    </div>
+
     <div class="bottom">product of <a href="https://www.github.com/palanjian/" target="_blank">@palanjian</a> on GitHub!</div>
     <div class="hero-img"><img src ="img/arm.png" id="hero-img"></div>
 
