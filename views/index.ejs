@@ -21,6 +21,12 @@
             </div>
         </div>
         <div class="settings">
+            <button type="button" class="settings-button copy-button" onclick="copyToClipboard()">
+                <span class="button-text">Copy</span>
+                <span class="button-icon">
+                    <ion-icon name="copy-outline"></ion-icon>
+                </span>
+            </button>
             <button type="button" class="settings-button">
                 <span class="button-text">Settings</span>
                 <span class="button-icon">
@@ -28,20 +34,16 @@
                 </span>
             </button>
         </div>
+        
     </div>
     <div class="bottom">product of <a href="https://www.github.com/palanjian/" target="_blank">@palanjian</a> on GitHub!</div>
     <div class="hero-img"><img src ="img/arm.png" id="hero-img"></div>
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <!-- <form>
-        <input type="radio" name = "dialect" checked="checked" onclick="easternize(), transliterate()">Eastern
-        <input type="radio" name = "dialect" onclick="westernize(), transliterate()">Western
-    </form> -->
-
     <!-- js scripts -->
     <script src="js/armenian.js"></script>
     <script src="js/index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- js scripts -->
 </body>
 </html>
