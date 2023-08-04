@@ -10,8 +10,13 @@ function parallax(event) {
 
 function copyToClipboard(){
     var text = document.getElementById('output');
+
     text.select();
     text.setSelectionRange(0, 99999); // For mobile devices
      // Copy the text inside the text field
     navigator.clipboard.writeText(text.value);
+
+    document.getElementById('copy-icon').setAttribute("name","checkbox-outline");
+    setTimeout(function(){document.getElementById('copy-icon').setAttribute("name","copy-outline")},1000);
+
 }
