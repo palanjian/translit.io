@@ -1,15 +1,32 @@
 const radioData = [
-    { name: "XorKh", labels: ["Խ as X", "Խ as Kh"], checkedIndex: 0 },
-    { name: "EorYe", labels: ["Ե as E", "Ե as Ye"], checkedIndex: 0 },
-    { name: "YorAt", labels: ["Ը as Y", "Ը as @"], checkedIndex: 0 },
-    { name: "JorZh", labels: ["Խ as J", "Խ as Zh"], checkedIndex: 0 },
-    { name: "TsorC", labels: ["Ծ as Ts", "Ծ as C"], checkedIndex: 0 },
-    { name: "GhorX", labels: ["Ղ as X", "Ղ as X"], checkedIndex: 0 },
-    { name: "CorTs", labels: ["Ց as Ts", "Ց as C"], checkedIndex: 0 },
+    { name: "XorKh", labels: ["Խ as X", "Խ as Kh"], checkedIndex: 0, leftOrRight: "left" },
+    { name: "EorYe", labels: ["Ե as E", "Ե as Ye"], checkedIndex: 0, leftOrRight: "left"  },
+    { name: "YorAt", labels: ["Ը as Y", "Ը as @"], checkedIndex: 0, leftOrRight: "left"  },
+    { name: "JorZh", labels: ["Ժ as J", "Ժ as Zh"], checkedIndex: 0, leftOrRight: "left"  },
+    { name: "TsorC", labels: ["Ծ as Ts", "Ծ as C"], checkedIndex: 0, leftOrRight: "left"  },
+    { name: "GhorX", labels: ["Ղ as X", "Ղ as Gh"], checkedIndex: 0, leftOrRight: "left"  },
+    { name: "CorTs", labels: ["Ց as Ts", "Ց as C"], checkedIndex: 0, leftOrRight: "left"  },
+    { name: "westernOrEastern", labels: ["Eastern Dialect", "Western Dialect"], checkedIndex: 0, leftOrRight: "right"  },
+    { name: "conversationalOrAcademic", labels: ["Conversational", "Academic"], checkedIndex: 0, leftOrRight: "right"  },
 ];
+
+getCheckedIndex()
+generateRadioButtons();
+
+function getCheckedIndex(){
+    radioData.forEach((data) => {
+        let cookie = getCookie(data.name)
+        if(checkCookie(data.name)){
+            data.checkedIndex = cookie
+            console.log(cookie)
+        }
+        else radioData.checkedIndex = 0
+    });
+}
 
 function generateRadioButtons(){
     const radioWrapper = document.getElementById('radio-wrapper');
+    const radioWrapper2 = document.getElementById('radio-wrapper-2');
 
     radioData.forEach(data => {
         const container = document.createElement("div");
@@ -22,23 +39,19 @@ function generateRadioButtons(){
             if (index === data.checkedIndex) {
                 input.checked = true;
             }   
+            input.addEventListener("click", () => {
+                setCookie(data.name, index)
+                //console.log(`Logged ${data.name}: ${index}`);
+            });
             const labelElement = document.createElement("label");
             labelElement.htmlFor = `toggle${label}`;
             labelElement.innerText = label;
             container.appendChild(input);
             container.appendChild(labelElement);
         });
-        radioWrapper.appendChild(container);
-    });    
-}
-
-document.addEventListener("mousemove", parallax);
-function parallax(event) {
-    const sigma = 5;
-    const x = (window.innerWidth - event.pageX * sigma) / 90;
-    const y = (window.innerHeight - event.pageY * sigma) / 90;
-    //console.log("x=" + x + "y=" + y)
-    document.getElementById('hero-img').style.transform = `translateX(${x}px) translateY(${y}px)`;
+        if(data.leftOrRight === "left") radioWrapper.appendChild(container);
+        else radioWrapper2.appendChild(container);
+    });
 }
 
 function copyToClipboard(){
@@ -57,10 +70,19 @@ function copyToClipboard(){
 function openSettings(){
     document.getElementById('translator-container').style.display = 'none'
     document.getElementById('settings-container').style.display = 'block'
-    generateRadioButtons()
 }
 
 function openTranslate(){
     document.getElementById('translator-container').style.display = 'block'
     document.getElementById('settings-container').style.display = 'none'
 }
+
+/*
+document.addEventListener("mousemove", parallax);
+function parallax(event) {
+    const sigma = 5;
+    const x = (window.innerWidth - event.pageX * sigma) / 90;
+    const y = (window.innerHeight - event.pageY * sigma) / 90;
+    //console.log("x=" + x + "y=" + y)
+    document.getElementById('hero-img').style.transform = `translateX(${x}px) translateY(${y}px)`;
+} */
