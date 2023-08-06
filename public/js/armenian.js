@@ -133,6 +133,7 @@ function westernize(){
     map.set("ճ", "j"), map.set("Ճ", "J"),
     map.set("ջ", "ch"), map.set("Ջ", "Ch")
 }
+
 function easternize(){
     map.set("պ", "p"), map.set("Պ", "P"),
     map.set("բ", "b"), map.set("Բ", "B"),

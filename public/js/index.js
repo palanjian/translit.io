@@ -1,11 +1,11 @@
 const radioData = [
-    { name: "XorKh", labels: ["Խ as X", "Խ as Kh"], checkedIndex: 0, leftOrRight: "left", value: 'Խ', func: setVariation },
     { name: "EorYe", labels: ["Ե as E", "Ե as Ye"], checkedIndex: 0, leftOrRight: "left", value: 'Ե', func: setVariation},
     { name: "YorAt", labels: ["Ը as Y", "Ը as @"], checkedIndex: 0, leftOrRight: "left", value: 'Ը', func: setVariation },
     { name: "JorZh", labels: ["Ժ as J", "Ժ as Zh"], checkedIndex: 0, leftOrRight: "left", value: 'Ժ', func: setVariation },
-    { name: "TsorC", labels: ["Ծ as Ts", "Ծ as C"], checkedIndex: 0, leftOrRight: "left", value: 'Ծ', func: setVariation },
-    { name: "GhorX", labels: ["Ղ as X", "Ղ as Gh"], checkedIndex: 0, leftOrRight: "left", value: 'Ղ', func: setVariation  },
     { name: "CorTs", labels: ["Ց as Ts", "Ց as C"], checkedIndex: 0, leftOrRight: "left", value: 'Ց', func: setVariation },
+    { name: "TsorC", labels: ["Ծ as Ts (Eastern)", "Ծ as C (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ծ', func: setVariation },
+    { name: "GhorX", labels: ["Ղ as X (Eastern)", "Ղ as Gh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ղ', func: setVariation  },
+    { name: "XorKh", labels: ["Խ as X (Eastern)", "Խ as Kh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Խ', func: setVariation },
     { name: "dialect", labels: ["Eastern Dialect", "Western Dialect"], checkedIndex: 0, leftOrRight: "right", func: setDialect },
     { name: "conversationalOrAcademic", labels: ["Conversational", "Academic"], checkedIndex: 0, leftOrRight: "right"  },
 ];
@@ -42,6 +42,7 @@ function generateRadioButtons(){
                 setCookie(data.name, index)
                 //console.log(`Logged ${data.name}: ${index}`);
                 data.func(data.value)
+                setDisabledButtons()
             });
             const labelElement = document.createElement("label");
             labelElement.htmlFor = `toggle${label}`;
@@ -70,6 +71,7 @@ function copyToClipboard(){
 function openSettings(){
     document.getElementById('translator-container').style.display = 'none'
     document.getElementById('settings-container').style.display = 'block'
+    setDisabledButtons()
 }
 
 function openTranslate(){
@@ -78,6 +80,24 @@ function openTranslate(){
     transliterate()
 }
 
+function setDisabledButtons(){
+    if(dialect == "0"){
+        document.getElementsByName("TsorC")[0].style.visibility = 'hidden'
+        document.getElementsByName("GhorX")[0].style.visibility = 'hidden'
+        document.getElementsByName("XorKh")[0].style.visibility = 'hidden'
+        document.getElementsByName("TsorC")[1].style.visibility = 'hidden'
+        document.getElementsByName("GhorX")[1].style.visibility = 'hidden'
+        document.getElementsByName("XorKh")[1].style.visibility = 'hidden'
+    }
+    else{
+        document.getElementsByName("TsorC")[0].disabled = true
+        document.getElementsByName("GhorX")[0].disabled = true
+        document.getElementsByName("XorKh")[0].disabled = true
+        document.getElementsByName("TsorC")[1].disabled = true
+        document.getElementsByName("GhorX")[1].disabled = true
+        document.getElementsByName("XorKh")[0].disabled = true
+    }
+}
 /*
 document.addEventListener("mousemove", parallax);
 function parallax(event) {
