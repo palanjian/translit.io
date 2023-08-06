@@ -50,6 +50,8 @@ const variations = new Map([
     ["ց", ["ts", "c"]], ["Ց", ["ts", "c"]]
 ]);
 
+var dialect = getDialect()
+
 function setVariation(letter) {
     const lowercaseLetter = letter.toLowerCase();
     const uppercaseLetter = letter.toUpperCase();
@@ -67,22 +69,27 @@ function setVariation(letter) {
     }
 }
 
-function setDialect(){
+function getDialect(){
     let cookie = getCookie("dialect")
-        if(checkCookie("dialect")){
-            if(cookie == 0){
-                westernize()
-                setCookie("dialect", 1)
-            }
-            else{
-                easternize()
-                setCookie("dialect", 0)
-            }
-        }
-        else{
-            westernize()
-            setCookie("dialect", 1)
-        }
+    if(cookie === "1"){
+        westernize()
+        return "1"
+    }
+    else{
+        easternize()
+        return "0"
+    }
+}
+
+function setDialect(){
+    if(dialect == "1"){
+        dialect = "0"
+        easternize()
+    }
+    else if(dialect == "0"){
+        dialect = "1"
+        westernize()
+    }
 }
 
 function transliterate(){
