@@ -20,10 +20,7 @@ function setCookie(cname, cvalue) {
 }
 
 function checkCookie(cname) {
-    let c = getCookie(cname);
-    if (c != "") {
-        return true
-    } else return false
+    return getCookie(cname) !== null;
 }
 //
 

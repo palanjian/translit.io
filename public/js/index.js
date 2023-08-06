@@ -1,13 +1,13 @@
 const radioData = [
-    { name: "XorKh", labels: ["Խ as X", "Խ as Kh"], checkedIndex: 0, leftOrRight: "left" },
-    { name: "EorYe", labels: ["Ե as E", "Ե as Ye"], checkedIndex: 0, leftOrRight: "left"  },
-    { name: "YorAt", labels: ["Ը as Y", "Ը as @"], checkedIndex: 0, leftOrRight: "left"  },
-    { name: "JorZh", labels: ["Ժ as J", "Ժ as Zh"], checkedIndex: 0, leftOrRight: "left"  },
-    { name: "TsorC", labels: ["Ծ as Ts", "Ծ as C"], checkedIndex: 0, leftOrRight: "left"  },
-    { name: "GhorX", labels: ["Ղ as X", "Ղ as Gh"], checkedIndex: 0, leftOrRight: "left"  },
-    { name: "CorTs", labels: ["Ց as Ts", "Ց as C"], checkedIndex: 0, leftOrRight: "left"  },
-    { name: "westernOrEastern", labels: ["Eastern Dialect", "Western Dialect"], checkedIndex: 0, leftOrRight: "right"  },
-    { name: "conversationalOrAcademic", labels: ["Conversational", "Academic"], checkedIndex: 0, leftOrRight: "right"  },
+    { name: "XorKh", labels: ["Խ as X", "Խ as Kh"], checkedIndex: 1, leftOrRight: "left", value: 'Խ', func: setVariation },
+    { name: "EorYe", labels: ["Ե as E", "Ե as Ye"], checkedIndex: 1, leftOrRight: "left", value: 'Ե', func: setVariation},
+    { name: "YorAt", labels: ["Ը as Y", "Ը as @"], checkedIndex: 1, leftOrRight: "left", value: 'Ը', func: setVariation },
+    { name: "JorZh", labels: ["Ժ as J", "Ժ as Zh"], checkedIndex: 1, leftOrRight: "left", value: 'Ժ', func: setVariation },
+    { name: "TsorC", labels: ["Ծ as Ts", "Ծ as C"], checkedIndex: 1, leftOrRight: "left", value: 'Ծ', func: setVariation },
+    { name: "GhorX", labels: ["Ղ as X", "Ղ as Gh"], checkedIndex: 1, leftOrRight: "left", value: 'Ղ', func: setVariation  },
+    { name: "CorTs", labels: ["Ց as Ts", "Ց as C"], checkedIndex: 1, leftOrRight: "left", value: 'Ց', func: setVariation },
+    { name: "dialect", labels: ["Eastern Dialect", "Western Dialect"], checkedIndex: 1, leftOrRight: "right", func: setDialect },
+    { name: "conversationalOrAcademic", labels: ["Conversational", "Academic"], checkedIndex: 1, leftOrRight: "right"  },
 ];
 
 getCheckedIndex()
@@ -18,7 +18,6 @@ function getCheckedIndex(){
         let cookie = getCookie(data.name)
         if(checkCookie(data.name)){
             data.checkedIndex = cookie
-            console.log(cookie)
         }
         else radioData.checkedIndex = 0
     });
@@ -36,12 +35,13 @@ function generateRadioButtons(){
             input.type = "radio";
             input.name = data.name;
             input.id = `toggle${label}`;
-            if (index === data.checkedIndex) {
+            if (index == data.checkedIndex) {
                 input.checked = true;
-            }   
+            }
             input.addEventListener("click", () => {
                 setCookie(data.name, index)
                 //console.log(`Logged ${data.name}: ${index}`);
+                data.func(data.value)
             });
             const labelElement = document.createElement("label");
             labelElement.htmlFor = `toggle${label}`;
@@ -75,6 +75,7 @@ function openSettings(){
 function openTranslate(){
     document.getElementById('translator-container').style.display = 'block'
     document.getElementById('settings-container').style.display = 'none'
+    transliterate()
 }
 
 /*

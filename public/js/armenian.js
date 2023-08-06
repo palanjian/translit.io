@@ -38,9 +38,52 @@ const map = new Map([
     ["օ", "o"], ["Օ", "O"],
     ["ֆ", "f"], ["Ֆ", "F"],
     ["և", "ev"]
-
 ]);
 
+const variations = new Map([
+    ["խ", ["x", "kh"]], ["Խ", ["X", "Kh"]], 
+    ["ե", ["e", "ye"]], ["Ե", ["E", "Ye"]],
+    ["ը", ["y", "@"]], ["Ը", ["Y", "@"]],
+    ["ժ", ["j", "zh"]], ["Ժ", ["J", "ZH"]],
+    ["ծ", ["ts", "c"]], ["Ծ", ["Ts", "C"]], 
+    ["ղ", ["x", "gh"]], ["Ղ", ["X", "Gh"]],
+    ["ց", ["ts", "c"]], ["Ց", ["ts", "c"]]
+]);
+
+function setVariation(letter) {
+    const lowercaseLetter = letter.toLowerCase();
+    const uppercaseLetter = letter.toUpperCase();
+  
+    if (map.get(lowercaseLetter) === variations.get(lowercaseLetter)[0]) {
+      map.set(lowercaseLetter, variations.get(lowercaseLetter)[1]);
+    } else if (map.get(lowercaseLetter) === variations.get(lowercaseLetter)[1]) {
+      map.set(lowercaseLetter, variations.get(lowercaseLetter)[0]);
+    }
+  
+    if (map.get(uppercaseLetter) === variations.get(uppercaseLetter)[0]) {
+      map.set(uppercaseLetter, variations.get(uppercaseLetter)[1]);
+    } else if (map.get(uppercaseLetter) === variations.get(uppercaseLetter)[1]) {
+      map.set(uppercaseLetter, variations.get(uppercaseLetter)[0]);
+    }
+}
+
+function setDialect(){
+    let cookie = getCookie("dialect")
+        if(checkCookie("dialect")){
+            if(cookie == 0){
+                westernize()
+                setCookie("dialect", 1)
+            }
+            else{
+                easternize()
+                setCookie("dialect", 0)
+            }
+        }
+        else{
+            westernize()
+            setCookie("dialect", 1)
+        }
+}
 
 function transliterate(){
     let translation = ""
@@ -62,6 +105,8 @@ function transliterate(){
         else if(i !=0 && i+1 < text.length && text[i] === "Ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'Vo';
         else if(i !=0 && i+1 < text.length && text[i] ===  "ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'vo';
         
+        //IMPLEMENT: ե special case
+
         else if(map.has(text[i])) translation += map.get(text[i])
         else translation += text[i]
     }
@@ -93,7 +138,6 @@ function easternize(){
     map.set("ճ", "ch"), map.set("Ճ", "Ch"),
     map.set("ջ", "j"), map.set("Ջ", "J")
 }
-
 /*
 DISCREPENCIES 
 
