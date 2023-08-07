@@ -212,6 +212,9 @@ input[type="radio"]:checked + label {
   color: #ffffff;
 }
 
-input[type="radio"]:disabled{
-  background-color: red;
-}
+input[type="radio"]:disabled + label {
+  opacity: 0.35;
+  cursor: not-allowed;
+
+} 
+

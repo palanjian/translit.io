@@ -7,7 +7,6 @@ const radioData = [
     { name: "GhorX", labels: ["Ղ as X (Eastern)", "Ղ as Gh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ղ', func: setVariation  },
     { name: "XorKh", labels: ["Խ as X (Eastern)", "Խ as Kh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Խ', func: setVariation },
     { name: "dialect", labels: ["Eastern Dialect", "Western Dialect"], checkedIndex: 0, leftOrRight: "right", func: setDialect },
-    { name: "conversationalOrAcademic", labels: ["Conversational", "Academic"], checkedIndex: 0, leftOrRight: "right"  },
 ];
 
 getCheckedIndex()
@@ -22,6 +21,8 @@ function getCheckedIndex(){
         else data.checkedIndex = 0
     });
 }
+
+const lastSelectedIndex = {};
 
 function generateRadioButtons(){
     const radioWrapper = document.getElementById('radio-wrapper');
@@ -39,10 +40,12 @@ function generateRadioButtons(){
                 input.checked = true;
             }
             input.addEventListener("click", () => {
-                setCookie(data.name, index)
-                //console.log(`Logged ${data.name}: ${index}`);
-                data.func(data.value)
-                setDisabledButtons()
+                if (!input.disabled && index !== lastSelectedIndex[data.name]) {
+                    lastSelectedIndex[data.name] = index; // update the last selected index
+                    setCookie(data.name, index);
+                    data.func(data.value);
+                    setDisabledButtons();
+                }
             });
             const labelElement = document.createElement("label");
             labelElement.htmlFor = `toggle${label}`;
@@ -82,12 +85,12 @@ function openTranslate(){
 
 function setDisabledButtons(){
     if(dialect == "0"){
-        document.getElementsByName("TsorC")[0].style.visibility = 'hidden'
-        document.getElementsByName("GhorX")[0].style.visibility = 'hidden'
-        document.getElementsByName("XorKh")[0].style.visibility = 'hidden'
-        document.getElementsByName("TsorC")[1].style.visibility = 'hidden'
-        document.getElementsByName("GhorX")[1].style.visibility = 'hidden'
-        document.getElementsByName("XorKh")[1].style.visibility = 'hidden'
+        document.getElementsByName("TsorC")[0].disabled = false 
+        document.getElementsByName("GhorX")[0].disabled = false
+        document.getElementsByName("XorKh")[0].disabled = false
+        document.getElementsByName("TsorC")[1].disabled = false 
+        document.getElementsByName("GhorX")[1].disabled = false
+        document.getElementsByName("XorKh")[1].disabled = false
     }
     else{
         document.getElementsByName("TsorC")[0].disabled = true
@@ -95,7 +98,7 @@ function setDisabledButtons(){
         document.getElementsByName("XorKh")[0].disabled = true
         document.getElementsByName("TsorC")[1].disabled = true
         document.getElementsByName("GhorX")[1].disabled = true
-        document.getElementsByName("XorKh")[0].disabled = true
+        document.getElementsByName("XorKh")[1].disabled = true
     }
 }
 /*

@@ -98,7 +98,7 @@ function transliterate(){
 
     for(let i = 0; i < text.length; i++){
         //add special cases
-
+        
         //ու case
         if(i+1 < text.length && text[i] === "ո" && text[i+1] === "ւ") { translation += 'u'; ++i }
         else if(i+1 < text.length && text[i] === "Ո" && text[i+1] === "Ւ") { translation += 'U'; ++i }
@@ -131,7 +131,9 @@ function westernize(){
     map.set("ձ", "ts"), map.set("Ձ", "Ts"),
     map.set("ծ", "dz"), map.set("Ծ", "Dz"),
     map.set("ճ", "j"), map.set("Ճ", "J"),
-    map.set("ջ", "ch"), map.set("Ջ", "Ch")
+    map.set("ջ", "ch"), map.set("Ջ", "Ch"),
+    map.set("ղ", "gh"), map.set("Ղ", "Gh"),
+    map.set("խ", "kh"), map.set("Խ", "Kh")
 }
 
 function easternize(){
@@ -145,6 +147,12 @@ function easternize(){
     map.set("ծ", "ts"), map.set("Ծ", "Ts"),
     map.set("ճ", "ch"), map.set("Ճ", "Ch"),
     map.set("ջ", "j"), map.set("Ջ", "J")
+    if(document.getElementsByName("GhorX")[0] != null){
+        if(document.getElementsByName("GhorX")[0].checked){ map.set("ղ", "x"); map.set("Ղ", "X"); }
+    }
+    if(document.getElementsByName("XorKh")[0] != null){
+        if(document.getElementsByName("XorKh")[0].checked){ map.set("խ", "x"); map.set("Խ", "X"); }
+    }
 }
 /*
 DISCREPENCIES 
