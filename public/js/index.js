@@ -12,11 +12,14 @@ const radioData = [
 getCheckedIndex()
 generateRadioButtons();
 
+
 function getCheckedIndex(){
     radioData.forEach((data) => {
         let cookie = getCookie(data.name)
         if(checkCookie(data.name)){
             data.checkedIndex = cookie
+            data.func(data.value)
+
         }
         else data.checkedIndex = 0
     });

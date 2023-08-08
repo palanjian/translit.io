@@ -37,7 +37,17 @@ const map = new Map([
     ["ք", "q"], ["Ք", "Q"],
     ["օ", "o"], ["Օ", "O"],
     ["ֆ", "f"], ["Ֆ", "F"],
-    ["և", "ev"]
+    ["և", "ev"],
+
+    //punctuation marks
+    ["«", "\""], ["»", "\""],
+    [",", ","], ["՝", ";"],
+    ["․", ":"], ["։", "."],
+    ["֊", "-"],
+
+    //inline punctuation
+    ["՜", ""], ["", "՛"],
+    ["՞", ""],
 ]);
 
 const variations = new Map([
@@ -55,7 +65,6 @@ var dialect = getDialect()
 function setVariation(letter) {
     const lowercaseLetter = letter.toLowerCase();
     const uppercaseLetter = letter.toUpperCase();
-  
     if (map.get(lowercaseLetter) === variations.get(lowercaseLetter)[0]) {
       map.set(lowercaseLetter, variations.get(lowercaseLetter)[1]);
     } else if (map.get(lowercaseLetter) === variations.get(lowercaseLetter)[1]) {
@@ -92,13 +101,13 @@ function setDialect(){
     }
 }
 
+
 function transliterate(){
     let translation = ""
     let text = document.getElementById('input').value
 
     for(let i = 0; i < text.length; i++){
         //add special cases
-        
         //ու case
         if(i+1 < text.length && text[i] === "ո" && text[i+1] === "ւ") { translation += 'u'; ++i }
         else if(i+1 < text.length && text[i] === "Ո" && text[i+1] === "Ւ") { translation += 'U'; ++i }
@@ -113,10 +122,17 @@ function transliterate(){
         else if(i !=0 && i+1 < text.length && text[i] ===  "ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'vo';
         
         //IMPLEMENT: ե special case
+        else if(text[i] === "ե" && map.get("ե") === "ye" && (i == 0)) translation += 'ye';
+        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i == 0)) translation += 'Ye';
+        else if(text[i] === "ե" && map.get("ե") === "ye" && (i-1 >= 0) && (text[i-1] === " ")) translation += 'ye';
+        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i-1 >= 0) && (text[i-1] === " ")) translation += 'Ye';
+        else if(text[i] === "ե" && map.get("ե") === "ye" && (i-1 >= 0) && (text[i-1] !== " ")) translation += 'e';
+        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i-1 >= 0) && (text[i-1] !== " ")) translation += 'E';
 
         else if(map.has(text[i])) translation += map.get(text[i])
         else translation += text[i]
     }
+
     document.getElementById("output").value = translation;
     return translation
 }
