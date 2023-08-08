@@ -86,6 +86,10 @@ function openTranslate(){
     transliterate()
 }
 
+function isCaps(str){
+    if(str.toUpperCase() === str) return true
+    else return false
+}
 function setDisabledButtons(){
     if(dialect == "0"){
         document.getElementsByName("TsorC")[0].disabled = false 

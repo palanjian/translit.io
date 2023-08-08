@@ -104,33 +104,39 @@ function setDialect(){
 
 function transliterate(){
     let translation = ""
+    let final = ""
     let text = document.getElementById('input').value
 
     for(let i = 0; i < text.length; i++){
+        let char = ""
         //add special cases
         //ու case
-        if(i+1 < text.length && text[i] === "ո" && text[i+1] === "ւ") { translation += 'u'; ++i }
-        else if(i+1 < text.length && text[i] === "Ո" && text[i+1] === "Ւ") { translation += 'U'; ++i }
-        else if((i+1 < text.length) && ((text[i] === "Ո" && text[i+1] === "ւ"))) { translation += 'U'; ++i }
-        else if((i+1 < text.length) && ((text[i] === "ո" && text[i+1] === "Ւ"))) { translation += 'u'; ++i }
+        if(i+1 < text.length && text[i] === "ո" && text[i+1] === "ւ") { char = 'u'; ++i }
+        else if(i+1 < text.length && text[i] === "Ո" && text[i+1] === "Ւ") { char = 'U'; ++i }
+        else if((i+1 < text.length) && ((text[i] === "Ո" && text[i+1] === "ւ"))) { char = 'U'; ++i }
+        else if((i+1 < text.length) && ((text[i] === "ո" && text[i+1] === "Ւ"))) { char = 'u'; ++i }
 
 
         //vo case
-        else if(i == 0 && text[i] === "Ո") translation += 'Vo';
-        else if(i == 0 && text[i] === "ո") translation += 'vo';
-        else if(i !=0 && i+1 < text.length && text[i] === "Ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'Vo';
-        else if(i !=0 && i+1 < text.length && text[i] ===  "ո" && (text[i-1] === " " || text[i-1] === '\n')) translation += 'vo';
+        else if(i == 0 && text[i] === "Ո") char = 'Vo';
+        else if(i == 0 && text[i] === "ո") char = 'vo';
+        else if(i !=0 && i+1 < text.length && text[i] === "Ո" && (text[i-1] === " " || text[i-1] === '\n')) char = 'Vo';
+        else if(i !=0 && i+1 < text.length && text[i] ===  "ո" && (text[i-1] === " " || text[i-1] === '\n')) char = 'vo';
         
         //IMPLEMENT: ե special case
-        else if(text[i] === "ե" && map.get("ե") === "ye" && (i == 0)) translation += 'ye';
-        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i == 0)) translation += 'Ye';
-        else if(text[i] === "ե" && map.get("ե") === "ye" && (i-1 >= 0) && (text[i-1] === " ")) translation += 'ye';
-        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i-1 >= 0) && (text[i-1] === " ")) translation += 'Ye';
-        else if(text[i] === "ե" && map.get("ե") === "ye" && (i-1 >= 0) && (text[i-1] !== " ")) translation += 'e';
-        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i-1 >= 0) && (text[i-1] !== " ")) translation += 'E';
+        else if(text[i] === "ե" && map.get("ե") === "ye" && (i == 0)) char = 'ye';
+        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i == 0)) char = 'Ye';
+        else if(text[i] === "ե" && map.get("ե") === "ye" && (i-1 >= 0) && (text[i-1] === " ")) char = 'ye';
+        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i-1 >= 0) && (text[i-1] === " ")) char = 'Ye';
+        else if(text[i] === "ե" && map.get("ե") === "ye" && (i-1 >= 0) && (text[i-1] !== " ")) char = 'e';
+        else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i-1 >= 0) && (text[i-1] !== " ")) char = 'E';
 
-        else if(map.has(text[i])) translation += map.get(text[i])
-        else translation += text[i]
+        else if(map.has(text[i])) char = map.get(text[i])
+        else char = text[i]
+
+        if(i+1 < text.length && isCaps(text[i]) && isCaps(text[i+1])) translation += char.toUpperCase()
+        else if(i+1 == text.length && i-1 >= 0 && isCaps(text[i]) && isCaps(text[i-1])) translation += char.toUpperCase()
+        else translation += char
     }
 
     document.getElementById("output").value = translation;
