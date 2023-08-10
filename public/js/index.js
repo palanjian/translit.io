@@ -12,18 +12,19 @@ const radioData = [
 getCheckedIndex()
 generateRadioButtons();
 
-
 function getCheckedIndex(){
     radioData.forEach((data) => {
         let cookie = getCookie(data.name)
         if(checkCookie(data.name)){
+            if(data.name != "dialect" && cookie === "1"){
+                data.func(data.value);
+            }
             data.checkedIndex = cookie
-            data.func(data.value)
-
         }
         else data.checkedIndex = 0
     });
 }
+
 
 const lastSelectedIndex = {};
 

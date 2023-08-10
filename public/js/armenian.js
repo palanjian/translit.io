@@ -63,6 +63,7 @@ const variations = new Map([
 var dialect = getDialect()
 
 function setVariation(letter) {
+    console.log("puc")
     const lowercaseLetter = letter.toLowerCase();
     const uppercaseLetter = letter.toUpperCase();
     if (map.get(lowercaseLetter) === variations.get(lowercaseLetter)[0]) {
@@ -130,10 +131,11 @@ function transliterate(){
         else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i-1 >= 0) && (text[i-1] === " ")) char = 'Ye';
         else if(text[i] === "ե" && map.get("ե") === "ye" && (i-1 >= 0) && (text[i-1] !== " ")) char = 'e';
         else if(text[i] === "Ե" && map.get("Ե") === "Ye" && (i-1 >= 0) && (text[i-1] !== " ")) char = 'E';
-
+        else if(text[i] === "և" && map.get("ե") === "ye") char = "yev";
         else if(map.has(text[i])) char = map.get(text[i])
         else char = text[i]
 
+        //capitalization standardization
         if(i+1 < text.length && isCaps(text[i]) && isCaps(text[i+1])) translation += char.toUpperCase()
         else if(i+1 == text.length && i-1 >= 0 && isCaps(text[i]) && isCaps(text[i-1])) translation += char.toUpperCase()
         else translation += char
@@ -143,7 +145,7 @@ function transliterate(){
     return translation
 }
 
-function westernize(){ 
+function westernize(){
     map.set("պ", "b"), map.set("Պ", "B"),
     map.set("բ", "p"), map.set("Բ", "P"),
     map.set("կ", "g"), map.set("Կ", "G"),
