@@ -9,7 +9,7 @@
 
 .translator-container {
   position: relative;
-  width: 60%;
+  width: 85%;
   border-radius: 2rem;
   border: solid;
   border-color: rgba(0, 0, 0, 0.5);
@@ -23,6 +23,9 @@
   -webkit-box-shadow: 0px 0px 212px 50px rgba(77, 101, 207, 0.2); 
   -moz-box-shadow: 0px 0px 212px 50px rgba(77, 101, 207, 0.2); 
   box-shadow: 0px 0px 212px 50px rgba(77, 101, 207, 0.2); 
+
+  background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
+
 }
 
 .translator-container textarea {
@@ -30,7 +33,7 @@
   width: 100%;
   height: auto;
 
-  font-size: 30px;
+  font-size: 2rem;
   color: rgba(255, 255, 255, 1);
   padding: 20px;
 
@@ -74,7 +77,7 @@ textarea::-webkit-scrollbar-thumb:hover {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: normal;
   color:rgba(255, 255, 255, 0.8);
-  font-size: 45px;
+  font-size: 2rem;
 }
 
 .box-container {
@@ -115,7 +118,7 @@ textarea::-webkit-scrollbar-thumb:hover {
   outline: none;
   border-radius: 1rem;
   overflow: hidden;
-  font-size: 30px;
+  font-size: 1.5rem;
   cursor: pointer;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   margin-right: 1%;
@@ -156,7 +159,7 @@ textarea::-webkit-scrollbar-thumb:hover {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: normal;
   color:rgba(255, 255, 255, 0.9);
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 html,
@@ -168,6 +171,8 @@ body {
   padding: 0;
   overflow-x: hidden;
   overflow-y: hidden;
+  background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
+  
 }
 
 body {
@@ -183,6 +188,7 @@ a{
 .radio-container{
   display: flex;
   width: 100%;
+  flex-shrink: 1;
 }
 
 .radio-wrapper{
@@ -251,4 +257,6 @@ body i{
   width: 100%;
   height: 100%;
 }
+
+
 

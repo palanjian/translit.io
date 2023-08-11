@@ -100,9 +100,9 @@ const radioData = [
     { name: "YorAt", labels: ["Ը as Y", "Ը as @"], checkedIndex: 0, leftOrRight: "left", value: 'Ը', func: setVariation },
     { name: "JorZh", labels: ["Ժ as J", "Ժ as Zh"], checkedIndex: 0, leftOrRight: "left", value: 'Ժ', func: setVariation },
     { name: "CorTs", labels: ["Ց as Ts", "Ց as C"], checkedIndex: 0, leftOrRight: "left", value: 'Ց', func: setVariation },
-    { name: "TsorC", labels: ["Ծ as Ts (Eastern)", "Ծ as C (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ծ', func: setVariation },
-    { name: "GhorX", labels: ["Ղ as X (Eastern)", "Ղ as Gh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ղ', func: setVariation  },
-    { name: "XorKh", labels: ["Խ as X (Eastern)", "Խ as Kh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Խ', func: setVariation },
+    { name: "TsorC", labels: ["Ծ as Ts", "Ծ as C"], checkedIndex: 0, leftOrRight: "left", value: 'Ծ', func: setVariation },
+    { name: "GhorX", labels: ["Ղ as X", "Ղ as Gh"], checkedIndex: 0, leftOrRight: "left", value: 'Ղ', func: setVariation  },
+    { name: "XorKh", labels: ["Խ as X", "Խ as Kh"], checkedIndex: 0, leftOrRight: "left", value: 'Խ', func: setVariation },
     { name: "dialect", labels: ["Eastern Dialect", "Western Dialect"], checkedIndex: 0, leftOrRight: "right", func: setDialect },
 ];
 
