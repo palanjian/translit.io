@@ -24,8 +24,7 @@
   -moz-box-shadow: 0px 0px 212px 50px rgba(77, 101, 207, 0.2); 
   box-shadow: 0px 0px 212px 50px rgba(77, 101, 207, 0.2); 
 
-  background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
-
+  background-size: cover;
 }
 
 .translator-container textarea {
@@ -152,7 +151,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 .bottom{
   position: fixed;
   left: 50%;
-  bottom: 4%;
+  bottom: 0vh;
   color: white;
   align-items: center;
   transform: translate(-50%, -50%);
@@ -160,6 +159,7 @@ textarea::-webkit-scrollbar-thumb:hover {
   font-weight: normal;
   color:rgba(255, 255, 255, 0.9);
   font-size: 1.5rem;
+  text-align: center;
 }
 
 html,
@@ -177,7 +177,8 @@ body {
 
 body {
   background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
-  overflow: hidden;
+  overflow: visible;
+  
 }
 
 a{
@@ -191,9 +192,13 @@ a{
   flex-shrink: 1;
 }
 
-.radio-wrapper{
+.radio-wrapper, .radio-wrapper-2 {
+  display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  padding: 10px; 
 }
+
 input[type="radio"] {
   display: none;
 }
@@ -206,7 +211,7 @@ label {
   align-items: center;
   gap: 0.8em;
   border: 3px solid #4189e0;
-  padding: 1em 2em;
+  padding: 0.5em 1em;
   border-radius: 0.5em;
   width: 100%;
   margin: 1%;
@@ -258,5 +263,7 @@ body i{
   height: 100%;
 }
 
-
+@media (max-width: 767px){
+  html {overflow-x: hidden;}
+}
 
