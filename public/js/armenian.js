@@ -1,4 +1,5 @@
 const map = new Map([
+    //all 38 letters in the armenian alphabet
     ["ա", "a"], ["Ա", "A"], 
     ["բ", "b"], ["Բ", "B"],
     ["գ", "g"], ["Գ", "G"],
@@ -45,11 +46,12 @@ const map = new Map([
     ["․", ":"], ["։", "."],
     ["֊", "-"],
 
-    //inline punctuation
+    //inline punctuation (difficult to implement without context)
     ["՜", ""], ["", "՛"],
     ["՞", ""],
 ]);
 
+//all possible variations to transliteration style
 const variations = new Map([
     ["խ", ["x", "kh"]], ["Խ", ["X", "Kh"]], 
     ["ե", ["e", "ye"]], ["Ե", ["E", "Ye"]],
@@ -60,10 +62,54 @@ const variations = new Map([
     ["ց", ["ts", "c"]], ["Ց", ["ts", "c"]]
 ]);
 
+
+function westernize(){
+    map.set("պ", "b"), map.set("Պ", "B"),
+    map.set("բ", "p"), map.set("Բ", "P"),
+    map.set("կ", "g"), map.set("Կ", "G"),
+    map.set("գ", "k"), map.set("Գ", "K"),
+    map.set("տ", "d"), map.set("Տ", "D"),
+    map.set("դ", "t"), map.set("Դ", "T"),
+    map.set("ձ", "ts"), map.set("Ձ", "Ts"),
+    map.set("ծ", "dz"), map.set("Ծ", "Dz"),
+    map.set("ճ", "j"), map.set("Ճ", "J"),
+    map.set("ջ", "ch"), map.set("Ջ", "Ch"),
+    map.set("ղ", "gh"), map.set("Ղ", "Gh"),
+    map.set("խ", "kh"), map.set("Խ", "Kh")
+}
+
+function easternize(){
+    map.set("պ", "p"), map.set("Պ", "P"),
+    map.set("բ", "b"), map.set("Բ", "B"),
+    map.set("կ", "k"), map.set("Կ", "K"),
+    map.set("գ", "g"), map.set("Գ", "G"),
+    map.set("տ", "t"), map.set("Տ", "T"),
+    map.set("դ", "d"), map.set("Դ", "D"),
+    map.set("ձ", "dz"), map.set("Ձ", "Dz"),
+    map.set("ծ", "ts"), map.set("Ծ", "Ts"),
+    map.set("ճ", "ch"), map.set("Ճ", "Ch"),
+    map.set("ջ", "j"), map.set("Ջ", "J")
+    if(document.getElementsByName("GhorX")[0] != null && document.getElementsByName("GhorX")[0].checked){map.set("ղ", "x"); map.set("Ղ", "X"); }
+    if(document.getElementsByName("XorKh")[0] != null && document.getElementsByName("XorKh")[0].checked){ map.set("խ", "x"); map.set("Խ", "X"); }
+}
+
+
+//labels to be generated in setting menu for selecting transliteration variations
+const radioData = [
+    { name: "EorYe", labels: ["Ե as E", "Ե as Ye"], checkedIndex: 0, leftOrRight: "left", value: 'Ե', func: setVariation},
+    { name: "YorAt", labels: ["Ը as Y", "Ը as @"], checkedIndex: 0, leftOrRight: "left", value: 'Ը', func: setVariation },
+    { name: "JorZh", labels: ["Ժ as J", "Ժ as Zh"], checkedIndex: 0, leftOrRight: "left", value: 'Ժ', func: setVariation },
+    { name: "CorTs", labels: ["Ց as Ts", "Ց as C"], checkedIndex: 0, leftOrRight: "left", value: 'Ց', func: setVariation },
+    { name: "TsorC", labels: ["Ծ as Ts (Eastern)", "Ծ as C (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ծ', func: setVariation },
+    { name: "GhorX", labels: ["Ղ as X (Eastern)", "Ղ as Gh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ղ', func: setVariation  },
+    { name: "XorKh", labels: ["Խ as X (Eastern)", "Խ as Kh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Խ', func: setVariation },
+    { name: "dialect", labels: ["Eastern Dialect", "Western Dialect"], checkedIndex: 0, leftOrRight: "right", func: setDialect },
+];
+
+const lastSelectedIndex = {}; //utilized for radioData selection
 var dialect = getDialect()
 
 function setVariation(letter) {
-    console.log("puc")
     const lowercaseLetter = letter.toLowerCase();
     const uppercaseLetter = letter.toUpperCase();
     if (map.get(lowercaseLetter) === variations.get(lowercaseLetter)[0]) {
@@ -101,7 +147,6 @@ function setDialect(){
         westernize()
     }
 }
-
 
 function transliterate(){
     let translation = ""
@@ -145,54 +190,3 @@ function transliterate(){
     return translation
 }
 
-function westernize(){
-    map.set("պ", "b"), map.set("Պ", "B"),
-    map.set("բ", "p"), map.set("Բ", "P"),
-    map.set("կ", "g"), map.set("Կ", "G"),
-    map.set("գ", "k"), map.set("Գ", "K"),
-    map.set("տ", "d"), map.set("Տ", "D"),
-    map.set("դ", "t"), map.set("Դ", "T"),
-    map.set("ձ", "ts"), map.set("Ձ", "Ts"),
-    map.set("ծ", "dz"), map.set("Ծ", "Dz"),
-    map.set("ճ", "j"), map.set("Ճ", "J"),
-    map.set("ջ", "ch"), map.set("Ջ", "Ch"),
-    map.set("ղ", "gh"), map.set("Ղ", "Gh"),
-    map.set("խ", "kh"), map.set("Խ", "Kh")
-}
-
-function easternize(){
-    map.set("պ", "p"), map.set("Պ", "P"),
-    map.set("բ", "b"), map.set("Բ", "B"),
-    map.set("կ", "k"), map.set("Կ", "K"),
-    map.set("գ", "g"), map.set("Գ", "G"),
-    map.set("տ", "t"), map.set("Տ", "T"),
-    map.set("դ", "d"), map.set("Դ", "D"),
-    map.set("ձ", "dz"), map.set("Ձ", "Dz"),
-    map.set("ծ", "ts"), map.set("Ծ", "Ts"),
-    map.set("ճ", "ch"), map.set("Ճ", "Ch"),
-    map.set("ջ", "j"), map.set("Ջ", "J")
-    if(document.getElementsByName("GhorX")[0] != null){
-        if(document.getElementsByName("GhorX")[0].checked){ map.set("ղ", "x"); map.set("Ղ", "X"); }
-    }
-    if(document.getElementsByName("XorKh")[0] != null){
-        if(document.getElementsByName("XorKh")[0].checked){ map.set("խ", "x"); map.set("Խ", "X"); }
-    }
-}
-/*
-DISCREPENCIES 
-
-
-Ե could be eh or yeh
-Ը could be y or @ 
-Ժ could be j or zh
-Խ could be x or kh
-Ծ could be c or ts
-Ղ could be x or gh     
-Ց could be c or ts 
-
-Եւ 
-Եվ  
-և 
-
-//westerners dont use x, they ALWAYS use kh or gh
-*/

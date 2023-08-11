@@ -19,7 +19,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
+  
   -webkit-box-shadow: 0px 0px 212px 50px rgba(77, 101, 207, 0.2); 
   -moz-box-shadow: 0px 0px 212px 50px rgba(77, 101, 207, 0.2); 
   box-shadow: 0px 0px 212px 50px rgba(77, 101, 207, 0.2); 
@@ -28,12 +28,36 @@
 .translator-container textarea {
   resize: none;
   width: 100%;
-  height: 100%;
+  height: auto;
 
   font-size: 30px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 1);
   padding: 20px;
+
+  scrollbar-color: #800080;
+  cursor: auto;
+  
 }
+
+textarea::-webkit-scrollbar {
+  width: 0.5em;
+  z-index: 5;
+}
+
+textarea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+textarea::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+
 
 .languages {
   display: flex;
@@ -60,6 +84,8 @@
   max-height: 70vh;
   flex-grow: 1;
   overflow-y: hidden;
+  max-height: 70vh; /* Add this property */
+  overflow-y: auto;
 }
 
 .box-wrapper {
@@ -77,16 +103,10 @@
   background-color: rgba(0, 0, 0, 0.3);
   padding-top: 1%;
   padding-bottom: 1%;
-  
+  overflow: hidden;
 }
 
 .settings-button{
-  /*
-  bottom: 0;
-  right: 0;
-  z-index: 10;
-  border-radius: 1rem;
-  width: 10%; */
   display: inline-flex;
   height: 50px;
   padding: 0;
@@ -126,30 +146,22 @@
   background: rgba(0, 0, 0, 0.08);
 }
 
-.hero-img {
-  position: fixed; 
-  z-index: -3; 
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-  pointer-events: none; 
-}
-
 .bottom{
   position: fixed;
   left: 50%;
-  bottom: 6%;
+  bottom: 4%;
   color: white;
   align-items: center;
   transform: translate(-50%, -50%);
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: normal;
-  color:rgba(255, 255, 255, 0.3);
-  font-size: 30px;
+  color:rgba(255, 255, 255, 0.9);
+  font-size: 24px;
 }
 
 html,
 body {
+  
   height: 100vh;
   min-height: 100vh;
   margin: 0;
@@ -166,10 +178,7 @@ a{
   color: #a52a2a;
 }
 
-
-
 /* radio */
-
 .radio-container{
   display: flex;
   width: 100%;
@@ -218,3 +227,27 @@ input[type="radio"]:disabled + label {
   cursor: not-allowed;
 
 } 
+
+body i{
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px #fff,
+  0 0 80 #fff;
+  animation: animate linear infinite;
+}
+
+@keyframes animate{
+  0%{ opacity: 0; }
+  10%{ opacity: 1; }
+  90%{ opacity: 1; }
+  0%{ opacity: 0; }
+}
+
+.stars{
+  width: 100%;
+  height: 100%;
+}
+

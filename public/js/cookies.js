@@ -22,5 +22,4 @@ function setCookie(cname, cvalue) {
 function checkCookie(cname) {
     return getCookie(cname) !== "";
 }
-//
 

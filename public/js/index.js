@@ -1,14 +1,3 @@
-const radioData = [
-    { name: "EorYe", labels: ["Ե as E", "Ե as Ye"], checkedIndex: 0, leftOrRight: "left", value: 'Ե', func: setVariation},
-    { name: "YorAt", labels: ["Ը as Y", "Ը as @"], checkedIndex: 0, leftOrRight: "left", value: 'Ը', func: setVariation },
-    { name: "JorZh", labels: ["Ժ as J", "Ժ as Zh"], checkedIndex: 0, leftOrRight: "left", value: 'Ժ', func: setVariation },
-    { name: "CorTs", labels: ["Ց as Ts", "Ց as C"], checkedIndex: 0, leftOrRight: "left", value: 'Ց', func: setVariation },
-    { name: "TsorC", labels: ["Ծ as Ts (Eastern)", "Ծ as C (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ծ', func: setVariation },
-    { name: "GhorX", labels: ["Ղ as X (Eastern)", "Ղ as Gh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Ղ', func: setVariation  },
-    { name: "XorKh", labels: ["Խ as X (Eastern)", "Խ as Kh (Eastern)"], checkedIndex: 0, leftOrRight: "left", value: 'Խ', func: setVariation },
-    { name: "dialect", labels: ["Eastern Dialect", "Western Dialect"], checkedIndex: 0, leftOrRight: "right", func: setDialect },
-];
-
 getCheckedIndex()
 generateRadioButtons();
 
@@ -24,9 +13,6 @@ function getCheckedIndex(){
         else data.checkedIndex = 0
     });
 }
-
-
-const lastSelectedIndex = {};
 
 function generateRadioButtons(){
     const radioWrapper = document.getElementById('radio-wrapper');
@@ -62,19 +48,6 @@ function generateRadioButtons(){
     });
 }
 
-function copyToClipboard(){
-    var text = document.getElementById('output');
-
-    text.select();
-    text.setSelectionRange(0, 99999); // For mobile devices
-     // Copy the text inside the text field
-    navigator.clipboard.writeText(text.value);
-
-    document.getElementById('copy-icon').setAttribute("name","checkbox-outline");
-    setTimeout(function(){document.getElementById('copy-icon').setAttribute("name","copy-outline")},1000);
-
-}
-
 function openSettings(){
     document.getElementById('translator-container').style.display = 'none'
     document.getElementById('settings-container').style.display = 'block'
@@ -87,34 +60,67 @@ function openTranslate(){
     transliterate()
 }
 
+/* general code */
+function copyToClipboard(){
+    var text = document.getElementById('output');
+
+    text.select();
+    text.setSelectionRange(0, 99999); // for mobile devices
+     // copy the text inside the text field
+    navigator.clipboard.writeText(text.value);
+
+    document.getElementById('copy-icon').setAttribute("name","checkbox-outline");
+    setTimeout(function(){document.getElementById('copy-icon').setAttribute("name","copy-outline")},1000);
+}
+
 function isCaps(str){
     if(str.toUpperCase() === str) return true
     else return false
 }
-function setDisabledButtons(){
-    if(dialect == "0"){
-        document.getElementsByName("TsorC")[0].disabled = false 
-        document.getElementsByName("GhorX")[0].disabled = false
-        document.getElementsByName("XorKh")[0].disabled = false
-        document.getElementsByName("TsorC")[1].disabled = false 
-        document.getElementsByName("GhorX")[1].disabled = false
-        document.getElementsByName("XorKh")[1].disabled = false
-    }
-    else{
-        document.getElementsByName("TsorC")[0].disabled = true
-        document.getElementsByName("GhorX")[0].disabled = true
-        document.getElementsByName("XorKh")[0].disabled = true
-        document.getElementsByName("TsorC")[1].disabled = true
-        document.getElementsByName("GhorX")[1].disabled = true
-        document.getElementsByName("XorKh")[1].disabled = true
+
+function setDisabledButtons() {
+    const elementNames = ["TsorC", "GhorX", "XorKh"];
+    const disableState = dialect === "1"; // if dialect is "1", elements should be disabled
+
+    for (const name of elementNames) {
+        const elements = document.getElementsByName(name);
+        for (const element of elements) {
+            element.disabled = disableState;
+        }
     }
 }
-/*
-document.addEventListener("mousemove", parallax);
-function parallax(event) {
-    const sigma = 5;
-    const x = (window.innerWidth - event.pageX * sigma) / 90;
-    const y = (window.innerHeight - event.pageY * sigma) / 90;
-    //console.log("x=" + x + "y=" + y)
-    document.getElementById('hero-img').style.transform = `translateX(${x}px) translateY(${y}px)`;
-} */
+
+/* aesthetic functions */
+stars()
+addEventListener("resize", (event) => {
+    resetStars()
+    stars()
+});
+
+function stars(){
+    const count = 200
+    const section = document.getElementById('stars')
+    var i = 0
+    while(i < count){ 
+        const star = document.createElement('i')
+        const x = Math.floor(Math.random() * window.innerWidth)
+        const y = Math.floor(Math.random() * window.innerHeight)
+
+        const size = Math.random() * 4
+        star.style.left = x + 'px'
+        star.style.top = y + 'px'
+        star.style.width = 1+size+'px'
+        star.style.height = 1+size+'px'
+        star.className = 'star'
+        const duration = Math.random() * 2
+        star.style.animationDuration = 2 + duration + 's'
+        section.appendChild(star)
+        i++
+    }
+}
+
+function resetStars(){
+    for(const star of document.getElementsByClassName('star')){
+        star.remove()
+    }
+}
