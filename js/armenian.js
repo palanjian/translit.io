@@ -48,7 +48,7 @@ const map = new Map([
 
     //inline punctuation (difficult to implement without context)
     ["՜", ""], ["", "՛"],
-    ["՞", ""],
+    ["՞", ""], ["՛", ""]
 ]);
 
 //all possible variations to transliteration style
@@ -62,7 +62,7 @@ const variations = new Map([
     ["ց", ["ts", "c"]], ["Ց", ["ts", "c"]]
 ]);
 
-
+//applies all Western Armenian variations
 function westernize(){
     map.set("պ", "b"), map.set("Պ", "B"),
     map.set("բ", "p"), map.set("Բ", "P"),
@@ -78,6 +78,7 @@ function westernize(){
     map.set("խ", "kh"), map.set("Խ", "Kh")
 }
 
+//applies all Eastern Armenian variations
 function easternize(){
     map.set("պ", "p"), map.set("Պ", "P"),
     map.set("բ", "b"), map.set("Բ", "B"),
@@ -92,7 +93,6 @@ function easternize(){
     if(document.getElementsByName("GhorX")[0] != null && document.getElementsByName("GhorX")[0].checked){map.set("ղ", "x"); map.set("Ղ", "X"); }
     if(document.getElementsByName("XorKh")[0] != null && document.getElementsByName("XorKh")[0].checked){ map.set("խ", "x"); map.set("Խ", "X"); }
 }
-
 
 //labels to be generated in setting menu for selecting transliteration variations
 const radioData = [
@@ -150,7 +150,6 @@ function setDialect(){
 
 function transliterate(){
     let translation = ""
-    let final = ""
     let text = document.getElementById('input').value
 
     for(let i = 0; i < text.length; i++){
