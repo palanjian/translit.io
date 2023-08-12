@@ -60,7 +60,6 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 
-
 .languages {
   display: flex;
   flex-direction: row;
@@ -86,7 +85,6 @@ textarea::-webkit-scrollbar-thumb:hover {
   max-height: 70vh;
   flex-grow: 1;
   overflow-y: hidden;
-  max-height: 70vh; /* Add this property */
   overflow-y: auto;
 }
 
@@ -167,18 +165,19 @@ body {
   
   height: 100vh;
   min-height: 100vh;
+  max-height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
-  
+  overscroll-behavior: none;
+
 }
 
 body {
   background: linear-gradient(245.69deg, #252b45 0%, #161a29 28.53%, #0e121a 75.52%);
-  overflow: visible;
-  
 }
 
 a{
@@ -263,7 +262,41 @@ body i{
   height: 100%;
 }
 
-@media (max-width: 767px){
-  html {overflow-x: hidden;}
+@media (max-width: 767px) {
+
+
+  .translator-container textarea{
+    font-size: 1.25rem;
+    height: calc(50vh - 210px);
+    
+    
+  }
+
+  .box-container{
+    flex-direction: column;
+    max-height: none;
+  }
+  .box-wrapper{
+    width: 100%; 
+  }
+  .settings {
+    flex-direction: row; 
+    align-items: center;
+    padding: 0; 
+  }
+
+  .settings-button {
+    width: 100%; /* Make buttons take full width */
+    margin: 0; /* Add some vertical spacing between buttons */
+    font-size: 1.2rem; /* Adjust font size for smaller screens */
+  }
+  
+  .button-icon {
+    font-size: 1.25em;
+    background: rgba(0, 0, 0, 0.08);
+    margin-left: auto; 
+  }
+
+
 }
 

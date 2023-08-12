@@ -43,7 +43,7 @@ function generateRadioButtons(){
             container.appendChild(input);
             container.appendChild(labelElement);
         });
-        if(data.leftOrRight === "left") radioWrapper.appendChild(container);
+        if(data.leftOrRight === "left" && onPhone == false) radioWrapper.appendChild(container);
         else radioWrapper2.appendChild(container);
     });
 }
