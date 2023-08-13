@@ -1,6 +1,7 @@
 let onPhone
 adjust()
 stars()
+setLanguageHeaders()
 
 function adjust(){
     if(window.screen.width <= 768){
@@ -9,6 +10,16 @@ function adjust(){
     }
     else{
         onPhone = false
+    }
+}
+
+function setLanguageHeaders(){
+    if(onPhone == true){
+        document.getElementById('l1').remove()
+        document.getElementById('l2').innerText = 'English'
+    }
+    else{
+        document.getElementById('l2').remove()
     }
 }
 
@@ -24,8 +35,8 @@ function stars(){
     var i = 0
     while(i < count){ 
         const star = document.createElement('i')
-        const x = Math.floor(Math.random() * window.innerWidth)
-        const y = Math.floor(Math.random() * window.innerHeight)
+        const x = Math.floor(Math.random() * window.innerWidth) - 5
+        const y = Math.floor(Math.random() * window.innerHeight) - 5
 
         const size = Math.random() * 4
         star.style.left = x + 'px'

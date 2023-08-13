@@ -75,7 +75,11 @@ textarea::-webkit-scrollbar-thumb:hover {
   flex-shrink: 0;
 }
 
-.languages h1{
+h1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: normal;
   color:rgba(255, 255, 255, 0.8);
@@ -244,7 +248,7 @@ input[type="radio"]:disabled + label {
 
 body i{
   position: absolute;
-  background: #fff;
+  background: hsl(0, 0%, 100%);
   border-radius: 50%;
   box-shadow: 0 0 10px #fff,
   0 0 20px #fff,
@@ -267,11 +271,13 @@ body i{
 
 @media (max-width: 767px) {
 
+  .translator-container{
+    top: 45%;
+  }
 
   .translator-container textarea{
     font-size: 1.25rem;
     height: calc(50vh - 210px);
-    
     
   }
 
@@ -299,7 +305,18 @@ body i{
     background: rgba(0, 0, 0, 0.08);
     margin-left: auto; 
   }
-
-
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 10; 
+}
+
+#l1{
+  
+}
+
+#l2{
+  background-color: rgba(0, 0, 0, 0.5);
+}
