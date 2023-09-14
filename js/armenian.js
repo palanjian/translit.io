@@ -188,4 +188,3 @@ function transliterate(){
     document.getElementById("output").value = translation;
     return translation
 }
-

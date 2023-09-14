@@ -1,6 +1,21 @@
+let onPhone = false;
+
+generateResponsiveHeadings();
 getCheckedIndex()
 generateRadioButtons();
 
+function generateResponsiveHeadings(){
+    if(window.screen.width <= 768){
+        onPhone = true
+        document.getElementById('radio-wrapper-2').remove()
+        document.getElementById('l1').remove()
+        document.getElementById('l2').innerText = 'English'
+    }
+    else{
+        onPhone = false
+        document.getElementById('l2').remove()
+    }
+}
 function getCheckedIndex(){
     radioData.forEach((data) => {
         let cookie = getCookie(data.name)
